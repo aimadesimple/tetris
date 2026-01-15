@@ -66,8 +66,8 @@ Get the game running on your machine in seconds.
 
 1.  **Clone the repository** (if using git):
     ```bash
-    git clone https://github.com/yourusername/neon-tetris.git
-    cd neon-tetris
+    git clone https://github.com/aimadesimple/tetris
+    cd tetris
     ```
 
 2.  **Install dependencies**:
