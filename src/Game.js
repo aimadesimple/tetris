@@ -133,12 +133,46 @@ export class Game {
     drawGameOver() {
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-        this.ctx.font = '2px Arial'; // Adjusted for small canvas scale if necessary, but BLOCK_SIZE handles scale
-        // Actually we are drawing in pixels, context is not scaled unless we play with it.
-        // 10 cols * 30 = 300 width.
+        
+        // Draw GAME OVER text
         this.ctx.fillStyle = 'white';
         this.ctx.font = '40px Arial';
         this.ctx.textAlign = 'center';
-        this.ctx.fillText('GAME OVER', this.ctx.canvas.width / 2, this.ctx.canvas.height / 2);
+        this.ctx.fillText('GAME OVER', this.ctx.canvas.width / 2, this.ctx.canvas.height / 2 - 30);
+        
+        // Draw REPLAY button
+        const buttonWidth = 120;
+        const buttonHeight = 40;
+        const buttonX = (this.ctx.canvas.width - buttonWidth) / 2;
+        const buttonY = this.ctx.canvas.height / 2 + 10;
+        
+        this.ctx.fillStyle = '#4CAF50';
+        this.ctx.fillRect(buttonX, buttonY, buttonWidth, buttonHeight);
+        
+        this.ctx.fillStyle = 'white';
+        this.ctx.font = '24px Arial';
+        this.ctx.fillText('REPLAY', this.ctx.canvas.width / 2, buttonY + 28);
+        
+        // Store button bounds for click detection
+        this.replayButton = { x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight };
+        
+        // Add click listener (only once)
+        if (!this.replayListenerAdded) {
+            this.replayListenerAdded = true;
+            this.ctx.canvas.addEventListener('click', this.handleReplayClick.bind(this));
+        }
+    }
+    
+    handleReplayClick(event) {
+        if (!this.gameOver || !this.replayButton) return;
+        
+        const rect = this.ctx.canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        
+        const btn = this.replayButton;
+        if (x >= btn.x && x <= btn.x + btn.width && y >= btn.y && y <= btn.y + btn.height) {
+            this.start();
+        }
     }
 }
