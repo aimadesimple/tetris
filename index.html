@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Tetris</title>
+    <!-- Premium Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <div class="game-container">
+        <div class="header">
+          <h1>TETRIS</h1>
+        </div>
+        <div class="game-wrapper">
+          <canvas id="board" class="game-board"></canvas>
+          <div class="sidebar">
+            <div class="score-card">
+              <h3>Score</h3>
+              <p id="score">0</p>
+            </div>
+            <div class="score-card">
+              <h3>Lines</h3>
+              <p id="lines">0</p>
+            </div>
+            <div class="score-card">
+              <h3>Level</h3>
+              <p id="level">0</p>
+            </div>
+            <div class="controls-info">
+              <p>← → to Move</p>
+              <p>↑ to Rotate</p>
+              <p>↓ for Soft Drop</p>
+              <p>SPACE for Hard Drop</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="start-screen">
+          <h1>NEON TETRIS</h1>
+          <button id="play-btn">START GAME</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
